@@ -160,14 +160,14 @@ public class ItemDetailsOnClick extends AppCompatActivity implements View.OnClic
     }
 
     private void checkIfImageExistsAlready() {
-        String fileNameText = "anish_" + item_name + "." + date + "." + month + "." + year + "." + category_name + ".jpg";
-        Uri uri = Uri.parse("content://com.anish.expirydatereminder.provider/cache/images/" + fileNameText);
+        String fileNameText = "ed_" + item_name + "." + date + "." + month + "." + year + "." + category_name + ".jpg";
+        Uri uri = Uri.parse("content://com.expirydatereminder.provider/cache/images/" + fileNameText);
         itemImage.setImageURI(uri);
     }
 
     private void deleteImage() {
-        String fileNameText = "anish_" + item_name + "." + date + "." + month + "." + year + "." + category_name + ".jpg";
-        Uri uri = Uri.parse("content://com.anish.expirydatereminder.provider/cache/images/" + fileNameText);
+        String fileNameText = "ed_" + item_name + "." + date + "." + month + "." + year + "." + category_name + ".jpg";
+        Uri uri = Uri.parse("content://com.expirydatereminder.provider/cache/images/" + fileNameText);
         ContentResolver contentResolver = getContentResolver();
         contentResolver.delete(uri, null, null);
         itemImage.setImageBitmap(null);

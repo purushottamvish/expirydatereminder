@@ -248,8 +248,8 @@ public class MainActivity extends AppCompatActivity implements DialogHandler.Exa
                         dbHandler.deleteRow(modelList.get(i));
                         itemsAdapter.notifyDataSetChanged();
 
-                        String fileNameText = "anish_" + modelList.get(i).getItem() + "." + modelList.get(i).getDate() + "." + modelList.get(i).getMonth() + "." + modelList.get(i).getYear() + "." + modelList.get(i).getCategory() + ".jpg";
-                        Uri uri = Uri.parse("content://com.anish.expirydatereminder.provider/cache/images/" + fileNameText);
+                        String fileNameText = "ed_" + modelList.get(i).getItem() + "." + modelList.get(i).getDate() + "." + modelList.get(i).getMonth() + "." + modelList.get(i).getYear() + "." + modelList.get(i).getCategory() + ".jpg";
+                        Uri uri = Uri.parse("content://com.expirydatereminder.provider/cache/images/" + fileNameText);
                         ContentResolver contentResolver = getContentResolver();
                         contentResolver.delete(uri, null, null);
                     })
@@ -443,8 +443,8 @@ public class MainActivity extends AppCompatActivity implements DialogHandler.Exa
     public void deleteImages(String category) {
         List<ItemModel> items_of_category = dbHandler.getAllItems(category);
         for (ItemModel a : items_of_category) {
-            String fileNameText = "anish_" + a.getItem() + "." + a.getDate() + "." + a.getMonth() + "." + a.getYear() + "." + a.getCategory() + ".jpg";
-            Uri uri = Uri.parse("content://com.anish.expirydatereminder.provider/cache/images/" + fileNameText);
+            String fileNameText = "ed_" + a.getItem() + "." + a.getDate() + "." + a.getMonth() + "." + a.getYear() + "." + a.getCategory() + ".jpg";
+            Uri uri = Uri.parse("content://com.expirydatereminder.provider/cache/images/" + fileNameText);
             ContentResolver contentResolver = getContentResolver();
             contentResolver.delete(uri, null, null);
         }
@@ -454,8 +454,8 @@ public class MainActivity extends AppCompatActivity implements DialogHandler.Exa
     public void deleteImages() {
         List<ItemModel> items_of_category = dbHandler.getAllItems();
         for (ItemModel a : items_of_category) {
-            String fileNameText = "pv" + a.getItem() + "." + a.getDate() + "." + a.getMonth() + "." + a.getYear() + "." + a.getCategory() + ".jpg";
-            Uri uri = Uri.parse("content://com.anish.expirydatereminder.provider/cache/images/" + fileNameText);
+            String fileNameText = "ed_" + a.getItem() + "." + a.getDate() + "." + a.getMonth() + "." + a.getYear() + "." + a.getCategory() + ".jpg";
+            Uri uri = Uri.parse("content://com.expirydatereminder.provider/cache/images/" + fileNameText);
             ContentResolver contentResolver = getContentResolver();
             contentResolver.delete(uri, null, null);
         }

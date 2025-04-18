@@ -44,7 +44,7 @@ public class SettingsDialogHandler extends AppCompatDialogFragment implements Ad
 
         builder.setView(v)
                 .setOnCancelListener(dialogInterface -> obj.refresh(dfd.getCurrentFormat()))
-                .setPositiveButton("ok",((dialogInterface, i) -> obj.refresh(dfd.getCurrentFormat())));
+                .setPositiveButton("ᴏᴋ",((dialogInterface, i) -> obj.refresh(dfd.getCurrentFormat())));
 
         category_input = v.findViewById(R.id.add_category_name);
         restoreButton = v.findViewById(R.id.restore_button);
