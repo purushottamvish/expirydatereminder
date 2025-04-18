@@ -1,3 +1,13 @@
 <resources>
-    <string name="app_name">Expiry Date Reminder</string>
+    <string name="app_name">ᴇxᴘɪʀʏ ᴅᴀᴛᴇ ʀᴇᴍɪɴᴅᴇʀ</string>
+
+    <!-- to toggle the open close button of the navigation drawer -->
+    <string name="nav_open">Open</string>
+    <string name="nav_close">Close</string>
+    <string name="no_result_found">No result found</string>
+    <string name="submit">Submit</string>
+    <string name="ignore">Ignore</string>
+    <string name="hint_pick_up_date">dd/mm/yyyy</string>
+
+
 </resources>

@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <RelativeLayout
+        android:id="@+id/view_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/delete_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/dp_10"
+            android:src="@drawable/bt_ic_delete_forever"
+            app:tint="@color/md_red_900" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dp_10"
+            android:layout_toLeftOf="@id/delete_icon"
+            android:text="Delete"
+            android:textColor="@color/md_red_900"
+            android:textSize="13dp" />
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/foreground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp_6"
+            android:foreground="@drawable/ripple_rectangle"
+            app:cardCornerRadius="@dimen/dp_10">
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/dp_12"
+                android:paddingTop="@dimen/dp_8"
+                android:paddingRight="@dimen/dp_12"
+                android:paddingBottom="@dimen/dp_8">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <com.expirydatereminder.Custom.CustomTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/dp_8"
+                            android:gravity="center_vertical"
+                            android:maxLines="1"
+                            android:minLines="1"
+                            android:text="@string/mdi_cube_outline"
+                            android:textColor="@color/md_grey_800"
+                            android:textSize="@dimen/dp_18"
+                            app:custom_font="materialdesignicons.ttf" />
+
+                        <TextView
+                            android:id="@+id/tv_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_1_minus"
+                            android:gravity="center_vertical"
+                            android:maxLines="1"
+                            android:minLines="1"
+                            android:singleLine="true"
+                            android:text="paracetamol tablet "
+                            android:textColor="@color/md_grey_800"
+                            android:textSize="@dimen/dp_16"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+
+
+
+                </LinearLayout>
+
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_6"
+                    android:orientation="horizontal">
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <com.expirydatereminder.Custom.CustomTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/dp_8"
+                            android:gravity="center_vertical"
+                            android:maxLines="1"
+                            android:minLines="1"
+                            android:text="@string/mdi_calendar_text"
+                            android:textColor="@color/md_grey_700"
+                            android:textSize="@dimen/dp_16"
+                            app:custom_font="materialdesignicons.ttf" />
+
+                        <com.expirydatereminder.Custom.CustomTextView
+                            android:id="@+id/tv_date"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_1_minus"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:text="20/11/2020"
+                            android:textColor="@color/md_grey_800"
+                            android:textSize="@dimen/dp_12" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <com.expirydatereminder.Custom.CustomTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/dp_8"
+                            android:gravity="center_vertical"
+                            android:maxLines="1"
+                            android:minLines="1"
+                            android:text="@string/mdi_shape_plus"
+                            android:textColor="@color/md_grey_700"
+                            android:textSize="@dimen/dp_16"
+                            app:custom_font="materialdesignicons.ttf" />
+
+                        <TextView
+                            android:id="@+id/tv_product_quanti"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_1_minus"
+                            android:layout_marginRight="@dimen/dp_16"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:text="product category"
+                            android:textColor="@color/md_grey_800"
+                            android:textSize="@dimen/dp_12" />
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_6"
+                    android:orientation="horizontal">
+
+
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:visibility="gone">
+
+                        <com.expirydatereminder.Custom.CustomTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/dp_8"
+                            android:gravity="center_vertical"
+                            android:maxLines="1"
+                            android:minLines="1"
+                            android:text="@string/mdi_clock_outline"
+                            android:textColor="@color/md_grey_700"
+                            android:textSize="@dimen/dp_16"
+                            app:custom_font="materialdesignicons.ttf" />
+
+                        <TextView
+                            android:id="@+id/tv_time"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_1_minus"
+                            android:layout_marginRight="@dimen/dp_16"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:text="7:30 p.m."
+                            android:textColor="@color/md_grey_800"
+                            android:textSize="@dimen/dp_12" />
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+</FrameLayout>

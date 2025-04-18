@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/transparent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/dp_24"
+        android:background="@drawable/rounded_corner_solid_white_small"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/dp_24"
+        android:paddingTop="@dimen/dp_24"
+        android:paddingRight="@dimen/dp_24">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <com.expirydatereminder.Custom.CustomTextView
+                android:id="@+id/dialog_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/dp_24"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/dp_80"
+                android:visibility="visible"
+                app:custom_font="materialdesignicons.ttf"
+                />
+
+            <ImageView
+                android:id="@+id/dialog_img_icon"
+                android:layout_width="@dimen/dp_80"
+                android:layout_height="@dimen/dp_80"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/dp_24"
+                android:contentDescription="@string/no_result_found"
+                android:src="@drawable/bug"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/dialog_tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Title"
+            android:textColor="@color/md_grey_800"
+            android:textSize="@dimen/dp_20"
+            android:visibility="visible" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/dialog_tv_message"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_16"
+                    android:gravity="center"
+                    android:text="message"
+                    android:textColor="@color/md_grey_800"
+                    android:textSize="@dimen/dp_16"
+                    android:visibility="visible"
+                     />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_24"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/dialog_btn_okay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_16"
+                android:layout_marginRight="@dimen/dp_16"
+                android:background="@drawable/selector_button_solid_blue"
+                android:enabled="true"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:padding="@dimen/dp_10"
+                android:text="@string/submit"
+                android:textAllCaps="true"
+                android:textColor="@color/md_white_1000"
+                android:textSize="@dimen/dp_16"
+                android:visibility="visible"
+               />
+
+            <TextView
+                android:id="@+id/dialog_btn_cancel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:padding="@dimen/dp_8"
+                android:text="@string/ignore"
+                android:textAllCaps="true"
+                android:textColor="@color/md_grey_600"
+                android:textSize="@dimen/dp_12"
+               />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

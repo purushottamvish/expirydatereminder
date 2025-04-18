@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <string name="mdi_briefcase" translatable="false">&#xF0D6;</string>
+    <string name="mdi_logout_variant" translatable="false">&#xf5fd;</string>
+    <string name="mdi_check_circle_outline" translatable="false">&#xF5E1;</string>
+    <string name="mdi_phone" translatable="false">&#xF3F2;</string>
+    <string name="mdi_cart" translatable="false">&#xf110;</string>
+    <string name="mdi_calendar_text" translatable="false">&#xf0f5;</string>
+    <string name="mdi_plus_minus_box" translatable="false">&#xf992;</string>
+    <string name="mdi_clock_outline" translatable="false">&#xf150;</string>
+    <string name="mdi_account_box_outline" translatable="false">&#xf007;</string>
+    <string name="mdi_currency_inr" translatable="false">&#xf1af;</string>
+    <string name="mdi_wallet" translatable="false">&#xf584;</string>
+    <string name="mdi_share_variant" translatable="false">&#xf497;</string>
+
+    <string name="mdi_delete_empty" translatable="false">&#xF6CB;</string>
+    <string name="mdi_account_remove" translatable="false">&#xf015;</string>
+
+    <string name="mdi_filter" translatable="false">&#xf232;</string>
+
+    <string name="mdi_filter_outline" translatable="false">&#xf233;</string>
+    <string name="mdi_menu" translatable="false">&#xf35c;</string>
+    
+    <string name="mdi_cube_outline" translatable="false" >&#xf1a7;</string>
+    <string name="mdi_shape_plus" translatable="false" >&#xf495;</string>
+    <string name="mdi_cart_outline" translatable="false" >&#xf111;</string>
+    <string name="mdi_tag_text_outline" translatable="false" >&#xf4fd;</string>
+    <string name="mdi_camera" translatable="false">&#xF100;</string>
+    <string name="mdi_arrow_left_bold_box_outline" translatable="false">&#xf732;</string>
+
+    <string name="mdi_plus" translatable="false">&#xf415;</string>
+    <string name="mdi_help_box" translatable="false">&#xf78a;</string>
+    <string name="mdi_settings_box" translatable="false">&#xf494;</string>
+    <string name="mdi_cart_plus" translatable="false">&#xf112;</string>
+
+
+
+
+</resources>

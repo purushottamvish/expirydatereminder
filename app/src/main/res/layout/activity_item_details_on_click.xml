@@ -2,192 +2,261 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:visibility="gone"
+    android:layout_height="match_parent">
 
-    tools:context=".ItemDetailsOnClick">
-
-    <TextView
-        android:id="@+id/nameOfItem"
+    <RelativeLayout
+        android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/black">
 
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
+        <com.expirydatereminder.Custom.CustomTextView
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="false"
+            android:layout_marginTop="@dimen/dp_5"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="@drawable/ripple_rectangle"
+            android:gravity="center"
+            android:padding="@dimen/dp_4"
+            android:text="@string/mdi_arrow_left_bold_box_outline"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dp_30"
+            android:textStyle="bold"
+            android:visibility="visible"
+            app:custom_font="materialdesignicons.ttf" />
 
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="30dp"
+        <TextView
+            android:id="@+id/app_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:padding="@dimen/dp_4"
+            android:text="ᴘʀᴏᴅᴜᴄᴛ ᴅᴇᴛᴀɪʟꜱ"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dp_28"
+            android:textStyle="normal" />
+    </RelativeLayout>
 
-        android:text="Item:"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/expiresOn"
+    <LinearLayout
+        android:id="@+id/image_View_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_centerHorizontal="true"
-
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="120dp"
-        android:layout_marginEnd="30dp"
-
-        android:text="Expires On:"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/category_image_view_in_item_details"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_centerHorizontal="true"
-
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginTop="210dp"
-
-        android:text="Category:"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        android:textStyle="bold" />
-
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        android:layout_below="@id/category_image_view_in_item_details"
-        android:layout_alignParentBottom="true"
-
-        android:layout_centerHorizontal="true"
-
-        android:layout_marginStart="20dp"
+        android:layout_below="@+id/app_bar"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="100dp"
+        android:gravity="center"
+        android:visibility="visible">
 
-        android:background="#000000"
 
-        android:contentDescription="image of the item"
-        android:padding="6dp"
-        app:srcCompat="@drawable/ic_launcher_background"
-        tools:ignore="ImageContrastCheck" />
+        <RelativeLayout
+            android:id="@+id/rl_product_pic"
+            android:layout_width="@dimen/dp_150"
+            android:layout_height="@dimen/dp_150"
+            android:layout_marginRight="@dimen/dp_16">
 
-    <Button
-        android:id="@+id/backButton"
-        android:layout_width="105dp"
-        android:layout_height="80dp"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_profile"
+                android:layout_width="@dimen/dp_180"
+                android:layout_height="@dimen/dp_180"
+                android:layout_centerVertical="true"
+                android:foreground="@drawable/ripple_rectangle"
+                app:cardCornerRadius="@dimen/dp_6"
+                app:cardElevation="0dp">
 
-        android:layout_above="@id/horizontalDividerBottom"
-        android:layout_alignParentEnd="true"
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/product_pic"
+                    android:scaleType="centerCrop"
 
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="20dp"
 
-        android:layout_marginBottom="12dp"
-        android:backgroundTint="@color/purple_500"
+                    >
 
-        android:text="Done"
-        android:textSize="18sp"
-        android:textStyle="bold"/>
+                </ImageView>
 
-    <Button
-        android:id="@+id/deletePicture"
-        android:layout_width="105dp"
-        android:layout_height="80dp"
+            </androidx.cardview.widget.CardView>
 
-        android:layout_above="@id/horizontalDividerBottom"
+            <com.expirydatereminder.Custom.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:text="@string/mdi_camera"
+                android:textColor="@color/md_black_1000"
+                android:textSize="@dimen/dp_35"
+                app:custom_font="materialdesignicons.ttf" />
 
-        android:layout_alignParentBottom="true"
+        </RelativeLayout>
 
-        android:layout_centerInParent="true"
 
-        android:layout_marginBottom="12dp"
-        android:backgroundTint="@color/purple_500"
-        android:text="Delete Image"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+        <ImageView
+            android:layout_width="@dimen/dp_150"
+            android:layout_height="@dimen/dp_150"
+            android:background="#000000"
+            android:contentDescription="image of the item"
+            android:padding="6dp"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_launcher_background"
+            tools:ignore="ImageContrastCheck" />
 
-    <Button
-        android:id="@+id/addPicture"
-        android:layout_width="105dp"
-        android:layout_height="80dp"
 
-        android:layout_above="@id/horizontalDividerBottom"
-        android:layout_alignParentStart="true"
+    </LinearLayout>
 
-        android:layout_alignParentBottom="true"
+
+
+
+    <LinearLayout
+        android:id="@+id/item_detial_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/image_View_layout"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="@dimen/dp_20"
+        android:layout_marginEnd="10dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/edittext_bg"
+            android:orientation="horizontal"
+            android:padding="@dimen/dp_8">
+
+            <com.expirydatereminder.Custom.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dp_8"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:minLines="1"
+                android:text="@string/mdi_cart_outline"
+                android:textColor="@color/md_grey_800"
+                android:textSize="@dimen/dp_25"
+                app:custom_font="materialdesignicons.ttf" />
+
+            <TextView
+                android:id="@+id/nameOfItem"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/dp_4_minus"
+                android:hint="Product Name"
+                android:textColor="@color/md_grey_800"
+                android:textSize="20dp"
+                android:textStyle="normal"
+
+                app:custom_font="materialdesignicons.ttf" />/>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_4"
+            android:layout_weight="1"
+            android:background="@drawable/edittext_bg"
+            android:orientation="horizontal"
+            android:padding="@dimen/dp_8">
+
+            <com.expirydatereminder.Custom.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dp_8"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:minLines="1"
+                android:text="@string/mdi_calendar_text"
+                android:textColor="@color/md_grey_800"
+                android:textSize="@dimen/dp_25"
+                app:custom_font="materialdesignicons.ttf" />
+
+            <TextView
+                android:id="@+id/expiresOn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_4_minus"
+                android:hint="20/08/2025"
+                android:textColor="@color/md_grey_800"
+                android:textSize="20dp"
+                android:textStyle="normal"
+                app:custom_font="materialdesignicons.ttf" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_4"
+            android:layout_weight="1"
+            android:background="@drawable/edittext_bg"
+            android:orientation="horizontal"
+
+            android:padding="@dimen/dp_8">
+
+            <com.expirydatereminder.Custom.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dp_8"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:minLines="1"
+                android:text="@string/mdi_tag_text_outline"
+                android:textColor="@color/md_grey_800"
+                android:textSize="@dimen/dp_25"
+                app:custom_font="materialdesignicons.ttf" />
+
+            <TextView
+                android:id="@+id/category_image_view_in_item_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_4_minus"
+
+                android:hint="Medical"
+                android:textColor="@color/md_grey_800"
+                android:textSize="20dp"
+                android:textStyle="normal"
+                app:custom_font="materialdesignicons.ttf" />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_detial_layout"
         android:layout_marginStart="20dp"
-
-        android:backgroundTint="@color/purple_500"
-        android:layout_marginBottom="12dp"
-        android:text="Add Image"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+        android:layout_marginTop="40dp"
+        android:gravity="center">
 
 
-    <View
-        android:id="@+id/verticalDividerLeft"
-        android:layout_width="5dp"
-        android:layout_height="match_parent"
-
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true"
-
-        android:background="?android:attr/listDivider"
-        android:backgroundTint="@color/purple_500"
-        android:backgroundTintMode="src_over" />
-
-    <View
-        android:id="@+id/verticalDividerRight"
-        android:layout_width="5dp"
-        android:layout_height="match_parent"
-
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
+        <Button
+            android:id="@+id/deletePicture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/md_red_900"
+            android:text="Delete Image"
+            android:textSize="12sp" />
 
 
-        android:background="?android:attr/listDivider"
-        android:backgroundTint="@color/purple_500"
-        android:backgroundTintMode="src_over" />
+    </LinearLayout>
 
-    <View
-        android:id="@+id/horizontalDividerUp"
-        android:layout_width="match_parent"
-        android:layout_height="5dp"
 
-        android:background="?android:attr/listDivider"
-        android:backgroundTint="@color/purple_500"
-        android:backgroundTintMode="src_over"
-
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"/>
-
-    <View
-        android:id="@+id/horizontalDividerBottom"
-        android:layout_width="match_parent"
-        android:layout_height="5dp"
-
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-
-        android:background="?android:attr/listDivider"
-        android:backgroundTint="@color/purple_500"
-        android:backgroundTintMode="src_over" />
 </RelativeLayout>
+

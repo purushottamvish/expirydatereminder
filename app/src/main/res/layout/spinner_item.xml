@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:ellipsize="marquee"
     android:textAlignment="inherit"
-    android:textSize="22sp"
-    android:paddingStart="6dp"
-    android:background="@android:color/darker_gray"
-    android:textColor="@color/purple_500" />
+    android:textSize="16dp"
+    android:paddingStart="2dp"
+    android:background="@android:color/white"
+    android:textColor="@color/black" />
