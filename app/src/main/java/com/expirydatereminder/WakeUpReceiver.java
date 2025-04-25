@@ -25,6 +25,7 @@ public class WakeUpReceiver extends BroadcastReceiver {
         for (ItemModel a:dbh.getAllItems()) {
             LocalDate ld = LocalDate.of(a.getYear(), a.getMonth(), a.getDate());
 
+            String itemName = a.getItem();
             String days = a.getNotifyDays();
              notifyDays = Integer.parseInt(days.replaceAll("[^0-9]", ""));
 

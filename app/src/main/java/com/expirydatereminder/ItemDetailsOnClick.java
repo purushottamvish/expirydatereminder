@@ -1,5 +1,8 @@
 package com.expirydatereminder;
 
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.ContentResolver;
@@ -144,14 +147,14 @@ public class ItemDetailsOnClick extends AppCompatActivity implements View.OnClic
         Uri uri = null;
         try {
             imagesFolder.mkdirs();
-            String fileNameText = "anish_" + item_name + "." + date + "." + month + "." + year + "." + category_name + ".jpg";
+            String fileNameText = "ed_" + item_name + "." + date + "." + month + "." + year + "." + category_name + ".jpg";
             File file = new File(imagesFolder, fileNameText);
             FileOutputStream stream = new FileOutputStream(file);
             image.compress(Bitmap.CompressFormat.JPEG, 100, stream);
             stream.flush();
             stream.close();
 
-            uri = FileProvider.getUriForFile(context.getApplicationContext(), "com.anish.expirydatereminder" + ".provider", file);
+            uri = FileProvider.getUriForFile(context.getApplicationContext(), "com.expirydatereminder" + ".provider", file);
 
         } catch (Exception e) {
             e.printStackTrace();
