@@ -23,7 +23,7 @@ import java.util.TimeZone;
 public class DialogHandler extends AppCompatDialogFragment implements AdapterView.OnItemSelectedListener {
     private EditText name, editTextDate, month, year, date;
     private ExampleDialogListener listener;
-    private Spinner spinner;
+    private Spinner spinner,daysSpinner;
     private List<String> CATEGORIES;
     SettingsDatabaseHandler settingsDatabaseHandler;
     Calendar cal = Calendar.getInstance(TimeZone.getDefault()); // Get current date
@@ -64,6 +64,7 @@ public class DialogHandler extends AppCompatDialogFragment implements AdapterVie
 
                             int d = 0;
                             String item_category = spinner.getSelectedItem().toString();
+                            String item_days = daysSpinner.getSelectedItem().toString();
 
                             if (expiryMonth < 13 && expiryMonth > 0) {
                                 if (date.getText().toString().isEmpty()) {
@@ -77,11 +78,11 @@ public class DialogHandler extends AppCompatDialogFragment implements AdapterVie
                                     }
                                 }
                                 if (year.getText().toString().isEmpty()) {
-                                    listener.addItemAsNeeded(itemName, d, expiryMonth, Year.now().getValue(), item_category);
+                                    listener.addItemAsNeeded(itemName, d, expiryMonth, Year.now().getValue(), item_category,item_days);
                                 } else {
                                     System.out.println("d=\t\t" + d);
                                     if (expiryYear > 999 && expiryYear < 10000)
-                                        listener.addItemAsNeeded(itemName, d, expiryMonth, expiryYear, item_category);
+                                        listener.addItemAsNeeded(itemName, d, expiryMonth, expiryYear, item_category,item_days);
                                     else {
                                         Toast.makeText(getContext(), "Invalid Year, it should be in YYYY format", Toast.LENGTH_SHORT).show();
                                         year.setText("");
@@ -110,10 +111,15 @@ public class DialogHandler extends AppCompatDialogFragment implements AdapterVie
         CATEGORIES = settingsDatabaseHandler.getCategories();
 
         spinner = view.findViewById(R.id.spinner_category_selector_add_item);
+
         spinner.setOnItemSelectedListener(this);
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getContext(), R.layout.spinner_dropdown_item, CATEGORIES);
         arrayAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
+
+        daysSpinner = view.findViewById(R.id.set_notification_day);
+        daysSpinner.setOnItemSelectedListener(this);
+
 
 
         return builder.create();
@@ -154,14 +160,14 @@ public class DialogHandler extends AppCompatDialogFragment implements AdapterVie
     }
 
     public interface ExampleDialogListener {
-        void addItemAsNeeded(String item_name, int date, int month, int year, String category_name);
+        void addItemAsNeeded(String item_name, int date, int month, int year, String category_name,String item_days);
 
     }
 
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        Toast.makeText(getContext(), CATEGORIES.get(i), Toast.LENGTH_SHORT).show();
+     //   Toast.makeText(getContext(), CATEGORIES.get(i), Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -115,6 +115,8 @@ public class MainActivity extends AppCompatActivity implements DialogHandler.Exa
         ad.setDropDownViewResource(R.layout.spinner_dropdown_item);
         categorySpinner.setAdapter(ad);
 
+
+
       /*  settingsButton = findViewById(R.id.settings_button);
         settingsButton.setOnClickListener(view -> {
             openSettingsDialog();
@@ -267,12 +269,14 @@ public class MainActivity extends AppCompatActivity implements DialogHandler.Exa
             myIntent.putExtra("year", modelList.get(i).getYear());
             myIntent.putExtra("date", modelList.get(i).getDate());
             myIntent.putExtra("category", modelList.get(i).getCategory());
+            myIntent.putExtra("days", modelList.get(i).getNotifyDays());
+
             MainActivity.this.startActivity(myIntent);
 
         });
     }
 
-    private int checkIfItemExists(String item, int month, int year, int date, String category) {
+    private int checkIfItemExists(String item, int month, int year, int date, String category, String days) {
         List<ItemModel> list_of_items = dbHandler.getAllItems();
         for (ItemModel obj : list_of_items) {
             if (obj.getItem().equals(item)) {
@@ -315,8 +319,8 @@ public class MainActivity extends AppCompatActivity implements DialogHandler.Exa
         }
     }
 
-    private void addItem(String itemName, int date, int month, int year, String category) {
-        int checker = checkIfItemExists(itemName, month, year, date, category);
+    private void addItem(String itemName, int date, int month, int year, String category,String days) {
+        int checker = checkIfItemExists(itemName, month, year, date, category ,days);
 
         if (checker == 3) {
             Toast.makeText(getApplicationContext(), "This item already exists!", Toast.LENGTH_SHORT).show();
@@ -345,8 +349,8 @@ public class MainActivity extends AppCompatActivity implements DialogHandler.Exa
         } else text = d + "/" + m + "/" + year + " : " + itemName;
 
         itemsAdapter.add(text);
-        dbHandler.addNewItem(new ItemModel(itemName, month, year, date, category));
-        modelList.add(new ItemModel(itemName, month, year, date, category));
+        dbHandler.addNewItem(new ItemModel(itemName, month, year, date, category,days));
+        modelList.add(new ItemModel(itemName, month, year, date, category,days));
     }
 
     private void createNotificationChannel() {
@@ -371,8 +375,9 @@ public class MainActivity extends AppCompatActivity implements DialogHandler.Exa
     }
 
     @Override
-    public void addItemAsNeeded(String item_name, int date, int month, int year, String category_name) {
-        addItem(item_name, date, month, year, category_name);
+    public void addItemAsNeeded(String item_name, int date, int month, int year, String category_name,String item_days) {
+        addItem(item_name, date, month, year, category_name ,item_days);
+        System.out.println(item_days);
         itemsAdapter.notifyDataSetChanged();
     }
 

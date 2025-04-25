@@ -15,21 +15,33 @@ public class WakeUpReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         DatabaseHandler dbh = new DatabaseHandler(context);
         NotificationDatabase ndb = new NotificationDatabase(context);
+
+
+
+
         int z=0;
+        int notifyDays = 0;
+
         for (ItemModel a:dbh.getAllItems()) {
             LocalDate ld = LocalDate.of(a.getYear(), a.getMonth(), a.getDate());
-            LocalDate ld2 = ld.minusDays(14);
-            LocalDate today = LocalDate.now();
 
+            String days = a.getNotifyDays();
+             notifyDays = Integer.parseInt(days.replaceAll("[^0-9]", ""));
+
+             System.out.println("days----->"+notifyDays);
+
+
+            LocalDate ld2 = ld.minusDays(notifyDays);
+            LocalDate today = LocalDate.now();
             if (today.isAfter(ld2) || today.isEqual(ld2)) {
                 z++;
             }
         }
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "edr_channel_1")
-                .setSmallIcon(R.drawable.logo_transparent_background)
+                .setSmallIcon(R.drawable.black_logo)
                 .setContentTitle("Expiry Date Reminder")
-                .setContentText("You have "+z+" items expiring within 14 days!")
+                .setContentText("You have "+z+" items expiring within "+notifyDays+" days!")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
@@ -38,7 +50,7 @@ public class WakeUpReceiver extends BroadcastReceiver {
         builder.setContentIntent(contentIntent);
 
         if(ndb.getCurrentSetting()==1 && z>0) {
-            notificationManager.notify(13, builder.build());
+            notificationManager.notify(notifyDays, builder.build());
         }
     }
 }

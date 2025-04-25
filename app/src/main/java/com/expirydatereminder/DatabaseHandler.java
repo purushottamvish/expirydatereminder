@@ -20,6 +20,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String MONTH_COL = "month";
     private static final String YEAR_COL = "year";
     private static final String CATEGORY_COL = "category";
+    private static final String NOTIFY_DAY_COL = "days";
     private static final String DATE_COL = "date";
 
     public DatabaseHandler(Context context) {
@@ -34,7 +35,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                     + MONTH_COL + " INTEGER,"
                     + YEAR_COL + " INTEGER,"
                     + DATE_COL + " INTEGER,"
-                    + CATEGORY_COL + " TEXT)";
+                    + CATEGORY_COL + " TEXT,"
+                    +NOTIFY_DAY_COL+ " TEXT)";
 
             // at last we are calling a exec sql method to execute above sql query
             getWritableDatabase().execSQL(query);
@@ -50,7 +52,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + MONTH_COL + " INTEGER,"
                 + YEAR_COL + " INTEGER,"
                 + DATE_COL + " INTEGER,"
-                + CATEGORY_COL + " TEXT)";
+                + CATEGORY_COL + " TEXT,"
+                +NOTIFY_DAY_COL+ " TEXT)";
 
         // at last we are calling a exec sql method to execute above sql query
         db.execSQL(query);
@@ -82,6 +85,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         int year = object.getYear();
         int date = object.getDate();
         String catg = object.getCategory();
+        String days = object.getNotifyDays();
 
         // on below line we are passing all values along with its key and value pair.
         values.put(NAME_COL, name);
@@ -89,6 +93,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(YEAR_COL, year);
         values.put(DATE_COL, date);
         values.put(CATEGORY_COL, catg);
+        values.put(NOTIFY_DAY_COL,days);
 
         // after adding all values we are passing content values to our table.
         db.insert(TABLE_NAME, null, values);
@@ -111,7 +116,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         if (crs.moveToFirst()) {
             do {
                 // on below line we are adding the data from cursor to our array list.
-                items.add(new ItemModel(crs.getString(1), crs.getInt(2), crs.getInt(3), crs.getInt(4), crs.getString(5)));
+                items.add(new ItemModel(crs.getString(1), crs.getInt(2), crs.getInt(3), crs.getInt(4), crs.getString(5), crs.getString(6)));
                 Log.d("Accessing", "ROW ID = " + crs.getString(0));
             } while (crs.moveToNext());
             // moving our cursor to next.
@@ -137,7 +142,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             do {
                 // on below line we are adding the data from cursor to our array list.
                 if (crs.getString(5).equals(category)) {
-                    items.add(new ItemModel(crs.getString(1), crs.getInt(2), crs.getInt(3), crs.getInt(4), crs.getString(5)));
+                    items.add(new ItemModel(crs.getString(1), crs.getInt(2), crs.getInt(3), crs.getInt(4), crs.getString(5),crs.getString(6)));
                     Log.d("Added", "Item with row id =" + crs.getString(0));
                 }
                 Log.d("Accessing", "ROW ID = " + crs.getString(0));

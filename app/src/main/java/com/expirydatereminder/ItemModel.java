@@ -1,7 +1,7 @@
 package com.expirydatereminder;
 
 public class ItemModel {
-    private String item, dateOfYear ,category;
+    private String item, dateOfYear ,category ,notifyDays;
     private int month, year, id, date;
 
     public String getDateOfYear() {
@@ -33,12 +33,13 @@ public class ItemModel {
         this.category = category;
     }
 
-    ItemModel(String i, int m, int y, int d, String cat){
+    ItemModel(String i, int m, int y, int d, String cat,String days){
         this.item = i;
         this.month = m;
         this.year = y;
         this.date = d;
         this.category = cat;
+        this.notifyDays = days;
     }
 
     public int getDate() {
@@ -81,4 +82,11 @@ public class ItemModel {
         this.year = year;
     }
 
+    public String getNotifyDays() {
+        return notifyDays;
+    }
+
+    public void setNotifyDays(String notifyDays) {
+        this.notifyDays = notifyDays;
+    }
 }

@@ -8,6 +8,11 @@
     <string name="submit">Submit</string>
     <string name="ignore">Ignore</string>
     <string name="hint_pick_up_date">dd/mm/yyyy</string>
+    <string name="notify_1">Notify me</string>
+    <string name="notify_2">days before expiry</string>
+    <string name="default_days">14</string>
+
+
 
 
 </resources>
