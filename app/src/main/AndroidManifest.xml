@@ -46,7 +46,11 @@
         <activity android:name=".LoginActivity" />
 
         <activity android:name=".MainActivity" />
+        <activity android:name=".CaptureAct"
+            android:screenOrientation="portrait"
+            android:stateNotNeeded="true" />
 
         <receiver android:name=".WakeUpReceiver"/>
+
     </application>
 </manifest>

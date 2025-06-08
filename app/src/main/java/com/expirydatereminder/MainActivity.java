@@ -9,7 +9,9 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -27,10 +29,13 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.expirydatereminder.Custom.CustomTextView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.journeyapps.barcodescanner.ScanContract;
+import com.journeyapps.barcodescanner.ScanOptions;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -81,7 +86,11 @@ public class MainActivity extends AppCompatActivity implements DialogHandler.Exa
         listView.setAdapter(itemsAdapter);
         setUpListViewListener();
 
-        addItemButton.setOnClickListener(view -> openDialog());
+        addItemButton.setOnClickListener(view -> {
+
+            scanCode();
+            openDialog();
+        });
 
         dbHandler = new DatabaseHandler(MainActivity.this);
         dbh = new DateFormatDatabase(MainActivity.this);
@@ -93,17 +102,7 @@ public class MainActivity extends AppCompatActivity implements DialogHandler.Exa
         populate(modelList);
 
         refreshButton.setOnClickListener(view -> {
-            modelList.clear();
-            itemsAdapter.clear();
-            itemsAdapter.notifyDataSetChanged();
-            String a = categorySpinner.getSelectedItem().toString();
-            if (a.equals("All Items")) {
-                modelList = dbHandler.getAllItems();
-            } else modelList = dbHandler.getAllItems(a);
-            modelList.sort(Comparator.comparingInt(ItemModel::getMonth));
-            modelList.sort(Comparator.comparingInt(ItemModel::getYear));
-            populate(modelList);
-            itemsAdapter.notifyDataSetChanged();
+            scanCode();
         });
 
         settingsDatabaseHandler = new SettingsDatabaseHandler(MainActivity.this);
@@ -174,11 +173,63 @@ public class MainActivity extends AppCompatActivity implements DialogHandler.Exa
         alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_HALF_DAY, alarmIntent);
     }
 
+    void scanCode() {
+        ScanOptions options = new ScanOptions();
+        options.setPrompt("Volume up to flash on");
+        options.setBeepEnabled(true);
+        options.setOrientationLocked(true);
+        options.setCaptureActivity(CaptureAct.class);
+        barLaucher.launch(options);
+    }
+
+    ActivityResultLauncher<ScanOptions> barLaucher = registerForActivityResult(new ScanContract(), result ->
+    {
+        if (result.getContents() != null) {
+          /*  AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+            builder.setTitle("Result");
+            builder.setMessage(result.toString());
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.dismiss();
+                }
+            }).show();*/
+        }
+    });
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.option_menu, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection.
+
+        switch (item.getItemId()) {
+
+            case R.id.menu_refresh:
+                refresh();
+                return true;
+
+            case R.id.menu_settings:
+                openSettingsDialog();
+                ad.notifyDataSetChanged();
+                return true;
+            case R.id.menu_help:
+                help();
+                return true;
+
+            case R.id.menu_logOut:
+                logout();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 
@@ -201,36 +252,16 @@ public class MainActivity extends AppCompatActivity implements DialogHandler.Exa
         itemsAdapter.notifyDataSetChanged();
     }
 
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection.
-
-        switch (item.getItemId()) {
-
-            case R.id.menu_refresh:
-                refresh();
-                return true;
-
-            case R.id.menu_settings:
-                openSettingsDialog();
-                ad.notifyDataSetChanged();
-                return true;
-            case R.id.menu_help:
-                help();
-                return true;
-
-            case R.id.menu_logOut:
-                finish();
-                Intent in = new Intent(getApplicationContext(), LoginActivity.class);
-                startActivity(in);
-                return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+    public void logout() {
+        SharedPreferences preferences = getSharedPreferences("login", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean("flag", false);
+        editor.apply();
+        finish();
+        Intent in = new Intent(getApplicationContext(), LoginActivity.class);
+        startActivity(in);
     }
+
 
     private void populate(List<ItemModel> list) {
         for (ItemModel a : list) {
@@ -319,8 +350,8 @@ public class MainActivity extends AppCompatActivity implements DialogHandler.Exa
         }
     }
 
-    private void addItem(String itemName, int date, int month, int year, String category,String days) {
-        int checker = checkIfItemExists(itemName, month, year, date, category ,days);
+    private void addItem(String itemName, int date, int month, int year, String category, String days) {
+        int checker = checkIfItemExists(itemName, month, year, date, category, days);
 
         if (checker == 3) {
             Toast.makeText(getApplicationContext(), "This item already exists!", Toast.LENGTH_SHORT).show();
@@ -349,8 +380,8 @@ public class MainActivity extends AppCompatActivity implements DialogHandler.Exa
         } else text = d + "/" + m + "/" + year + " : " + itemName;
 
         itemsAdapter.add(text);
-        dbHandler.addNewItem(new ItemModel(itemName, month, year, date, category,days));
-        modelList.add(new ItemModel(itemName, month, year, date, category,days));
+        dbHandler.addNewItem(new ItemModel(itemName, month, year, date, category, days));
+        modelList.add(new ItemModel(itemName, month, year, date, category, days));
     }
 
     private void createNotificationChannel() {
@@ -375,8 +406,8 @@ public class MainActivity extends AppCompatActivity implements DialogHandler.Exa
     }
 
     @Override
-    public void addItemAsNeeded(String item_name, int date, int month, int year, String category_name,String item_days) {
-        addItem(item_name, date, month, year, category_name ,item_days);
+    public void addItemAsNeeded(String item_name, int date, int month, int year, String category_name, String item_days) {
+        addItem(item_name, date, month, year, category_name, item_days);
         System.out.println(item_days);
         itemsAdapter.notifyDataSetChanged();
     }
